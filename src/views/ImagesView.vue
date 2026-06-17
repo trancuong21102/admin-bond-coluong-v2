@@ -57,10 +57,13 @@ const fetchImages = async () => {
   isLoading.value = true;
   try {
     const params = {
-      status: statusFilter.value,
       page: currentPage.value,
       limit: limitPerPage.value
     };
+
+    if (statusFilter.value && statusFilter.value !== 'ALL') {
+      params.status = statusFilter.value;
+    }
 
     if (searchQuery.value.trim()) {
       params.search = searchQuery.value.trim();
@@ -247,13 +250,14 @@ const totalPages = computed(() => {
       <!-- Status Tabs -->
       <div style="display: flex; gap: 0.5rem;">
         <button 
-          v-for="status in ['PENDING', 'APPROVED', 'REJECTED']"
+          v-for="status in ['ALL', 'PENDING', 'APPROVED', 'REJECTED']"
           :key="status"
           class="btn btn-sm"
           :class="statusFilter === status ? 'btn-primary' : 'btn-secondary'"
           @click="statusFilter = status; currentPage = 1;"
         >
           {{ 
+            status === 'ALL' ? 'Tất cả' :
             status === 'PENDING' ? 'Chờ duyệt' :
             status === 'APPROVED' ? 'Đã duyệt' : 'Từ chối'
           }}

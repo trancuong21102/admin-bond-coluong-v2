@@ -157,7 +157,7 @@ onMounted(() => {
                 <span 
                   v-if="user.role === 'ADMIN'" 
                   class="badge" 
-                  style="background-color: var(--accent-glow); color: var(--accent-light); border: 1px solid rgba(99,102,241,0.25); display: inline-flex; align-items: center; gap: 4px;"
+                  style="background-color: var(--accent-glow); color: var(--accent-light); border: 1px solid rgba(230,0,35,0.25); display: inline-flex; align-items: center; gap: 4px;"
                 >
                   <Shield :size="12" /> Admin
                 </span>

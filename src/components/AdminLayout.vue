@@ -257,8 +257,7 @@ const isActive = (path) => {
 
 .nav-item.active {
   color: #fff;
-  background-color: var(--accent);
-  box-shadow: 0 4px 12px var(--accent-glow);
+  background-color: var(--bg-surface-active);
 }
 
 .logout-btn:hover {
