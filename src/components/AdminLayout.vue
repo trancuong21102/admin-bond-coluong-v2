@@ -171,6 +171,7 @@ const isActive = (path) => {
     <div class="main-content">
       <!-- Header Bar -->
       <header 
+        class="admin-header"
         style="
           height: var(--header-height);
           background-color: var(--bg-surface);
@@ -206,13 +207,13 @@ const isActive = (path) => {
           <X v-else :size="20" />
         </button>
 
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div class="admin-header-title" style="display: flex; align-items: center; gap: 0.5rem;">
           <span style="color: var(--text-muted); font-size: 0.9rem;">Hệ thống quản trị Pinterest Mini</span>
         </div>
 
         <!-- Admin Account Profile Widget -->
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
-          <div style="text-align: right; display: flex; flex-direction: column;">
+        <div class="admin-profile" style="display: flex; align-items: center; gap: 0.75rem;">
+          <div class="admin-profile-details" style="text-align: right; display: flex; flex-direction: column;">
             <span style="font-weight: 600; font-size: 0.9rem; color: #fff;">{{ adminUser.name }}</span>
             <span style="font-size: 0.75rem; color: var(--text-muted);">{{ adminUser.email }}</span>
           </div>

@@ -234,7 +234,7 @@ const totalPages = computed(() => {
 
 <template>
   <div>
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+    <div class="page-header">
       <div>
         <h1 class="page-title">Quản lý Hình ảnh</h1>
         <p class="page-subtitle">Xem xét, kiểm duyệt ảnh từ người dùng hoặc đăng ảnh trực tiếp.</p>
@@ -248,7 +248,7 @@ const totalPages = computed(() => {
     <!-- Filter control bar -->
     <div class="filter-bar">
       <!-- Status Tabs -->
-      <div style="display: flex; gap: 0.5rem;">
+      <div class="status-tabs">
         <button 
           v-for="status in ['ALL', 'PENDING', 'APPROVED', 'REJECTED']"
           :key="status"
@@ -266,7 +266,7 @@ const totalPages = computed(() => {
       
       <!-- Search & Category Filters -->
       <div class="filter-inputs">
-        <select v-model="categoryFilter" class="form-control" style="width: 180px; padding: 0.55rem;">
+        <select v-model="categoryFilter" class="form-control filter-select" style="width: 180px; padding: 0.55rem;">
           <option value="">Tất cả danh mục</option>
           <option v-for="cat in categories" :key="cat.id" :value="String(cat.id)">
             {{ cat.name }}

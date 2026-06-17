@@ -142,10 +142,10 @@ onMounted(() => {
       </div>
 
       <!-- Action items splits -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+      <div class="dashboard-queues">
         <!-- Pending Categories Queue -->
         <div class="card">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+          <div class="queue-card-header">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
               <FolderIcon style="color: var(--warning)" :size="20" />
               <h3 style="font-size: 1.15rem; color: #fff;">Danh mục chờ duyệt mới nhất</h3>
@@ -164,9 +164,9 @@ onMounted(() => {
             <div 
               v-for="cat in pendingCategoriesList" 
               :key="cat.id"
-              style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: rgba(255,255,255,0.02); border-radius: var(--radius-md); border: 1px solid var(--border-color);"
+              class="queue-item"
             >
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div class="queue-item-main">
                 <img :src="cat.coverImage" class="table-thumb" style="width: 44px; height: 44px; border-radius: var(--radius-sm);" />
                 <div>
                   <span style="font-weight: 600; font-size: 0.95rem; color: #fff; display: block;">{{ cat.name }}</span>
@@ -180,7 +180,7 @@ onMounted(() => {
 
         <!-- Pending Images Queue -->
         <div class="card">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+          <div class="queue-card-header">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
               <ImageIcon style="color: var(--warning)" :size="20" />
               <h3 style="font-size: 1.15rem; color: #fff;">Ảnh chờ phê duyệt mới nhất</h3>
@@ -199,9 +199,9 @@ onMounted(() => {
             <div 
               v-for="img in pendingImagesList" 
               :key="img.id"
-              style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: rgba(255,255,255,0.02); border-radius: var(--radius-md); border: 1px solid var(--border-color);"
+              class="queue-item"
             >
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div class="queue-item-main">
                 <img :src="img.url" class="table-thumb" style="width: 44px; height: 44px; border-radius: var(--radius-sm);" />
                 <div>
                   <span style="font-weight: 600; font-size: 0.95rem; color: #fff; display: block;">{{ img.title }}</span>

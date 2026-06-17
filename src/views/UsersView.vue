@@ -80,7 +80,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+    <div class="page-header">
       <div>
         <h1 class="page-title">Quản lý Thành viên</h1>
         <p class="page-subtitle">Xem danh sách người dùng và cấu hình quyền đăng tải tin cậy.</p>
@@ -124,7 +124,7 @@ onMounted(() => {
     <!-- Table content -->
     <div v-else class="card" style="padding: 0; overflow: hidden;">
       <div class="table-wrapper">
-        <table class="admin-table">
+        <table class="admin-table responsive-card-table">
           <thead>
             <tr>
               <th style="width: 80px;">ID</th>
@@ -138,10 +138,10 @@ onMounted(() => {
           </thead>
           <tbody>
             <tr v-for="user in filteredUsers" :key="user.id">
-              <td>
+              <td data-label="ID">
                 <span style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#{{ user.id }}</span>
               </td>
-              <td>
+              <td data-label="Thành viên">
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <img 
                     :src="user.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80'" 
@@ -150,10 +150,10 @@ onMounted(() => {
                   <span style="font-weight: 600; color: #fff;">{{ user.name }}</span>
                 </div>
               </td>
-              <td>
+              <td data-label="Email">
                 <span style="color: var(--text-muted);">{{ user.email }}</span>
               </td>
-              <td>
+              <td data-label="Vai trò">
                 <span 
                   v-if="user.role === 'ADMIN'" 
                   class="badge" 
@@ -165,7 +165,7 @@ onMounted(() => {
                   User
                 </span>
               </td>
-              <td>
+              <td data-label="Trusted Upload">
                 <!-- Toggle for Image Trusted Upload rights -->
                 <div v-if="user.role !== 'ADMIN'" style="display: flex; align-items: center; gap: 0.5rem;">
                   <label class="switch">
@@ -183,7 +183,7 @@ onMounted(() => {
                 </div>
                 <span v-else style="font-size: 0.8rem; color: var(--success); font-weight: 600;">Miễn duyệt</span>
               </td>
-              <td>
+              <td data-label="Trusted Category">
                 <!-- Toggle for Category Trusted rights -->
                 <div v-if="user.role !== 'ADMIN'" style="display: flex; align-items: center; gap: 0.5rem;">
                   <label class="switch">
@@ -201,7 +201,7 @@ onMounted(() => {
                 </div>
                 <span v-else style="font-size: 0.8rem; color: var(--success); font-weight: 600;">Miễn duyệt</span>
               </td>
-              <td>
+              <td data-label="Ngày tham gia">
                 <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
                   <Calendar :size="14" />
                   <span>{{ formatDate(user.createdAt) }}</span>

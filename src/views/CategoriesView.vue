@@ -207,7 +207,7 @@ const formatDate = (dateString) => {
 
 <template>
   <div>
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+    <div class="page-header">
       <div>
         <h1 class="page-title">Quản lý Danh mục</h1>
         <p class="page-subtitle">Quản trị các danh mục hình ảnh (phê duyệt yêu cầu từ người dùng và tạo danh mục hệ thống).</p>
@@ -220,7 +220,7 @@ const formatDate = (dateString) => {
 
     <!-- Filter/Tabs Bar -->
     <div class="filter-bar">
-      <div style="display: flex; gap: 0.5rem;">
+      <div class="status-tabs">
         <button 
           v-for="status in ['ALL', 'PENDING', 'APPROVED', 'REJECTED']"
           :key="status"
@@ -268,7 +268,7 @@ const formatDate = (dateString) => {
     <!-- Categories Table -->
     <div v-else class="card" style="padding: 0; overflow: hidden;">
       <div class="table-wrapper">
-        <table class="admin-table">
+        <table class="admin-table responsive-card-table">
           <thead>
             <tr>
               <th style="width: 70px;">ID</th>
@@ -284,20 +284,20 @@ const formatDate = (dateString) => {
           </thead>
           <tbody>
             <tr v-for="cat in filteredCategories" :key="cat.id">
-              <td>
+              <td data-label="ID">
                 <span style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#{{ cat.id }}</span>
               </td>
-              <td>
+              <td data-label="Ảnh bìa">
                 <img 
                   :src="cat.coverImage || 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=150&h=100&q=80'" 
                   class="table-thumb" 
                 />
               </td>
-              <td>
+              <td data-label="Tên / Slug">
                 <strong style="color: #fff; display: block; font-size: 0.95rem;">{{ cat.name }}</strong>
                 <span style="font-family: monospace; font-size: 0.75rem; color: var(--accent-light);">{{ cat.slug }}</span>
               </td>
-              <td>
+              <td data-label="Mô tả">
                 <span 
                   v-if="cat.description" 
                   style="font-size: 0.85rem; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; max-width: 200px;"
@@ -307,7 +307,7 @@ const formatDate = (dateString) => {
                 </span>
                 <span v-else style="color: var(--text-dark); font-style: italic; font-size: 0.8rem;">Không có</span>
               </td>
-              <td>
+              <td data-label="Hiển thị">
                 <!-- Toggle public switch -->
                 <div style="display: flex; align-items: center; gap: 0.4rem;">
                   <label class="switch">
@@ -325,7 +325,7 @@ const formatDate = (dateString) => {
                   </span>
                 </div>
               </td>
-              <td>
+              <td data-label="Trạng thái">
                 <span v-if="cat.status === 'APPROVED'" class="badge badge-approved">Đã duyệt</span>
                 <span v-else-if="cat.status === 'PENDING'" class="badge badge-pending">Chờ duyệt</span>
                 <span v-else class="badge badge-rejected" :title="'Lý do: ' + cat.rejectReason">Từ chối</span>
@@ -338,15 +338,15 @@ const formatDate = (dateString) => {
                   Lý do: {{ cat.rejectReason }}
                 </span>
               </td>
-              <td>
+              <td data-label="Người tạo">
                 <span style="font-size: 0.85rem;">
                   {{ cat.createdBy?.name || 'User #' + cat.createdById }}
                 </span>
               </td>
-              <td>
+              <td data-label="Ngày tạo">
                 <span style="color: var(--text-muted); font-size: 0.85rem;">{{ formatDate(cat.createdAt) }}</span>
               </td>
-              <td style="text-align: right;">
+              <td data-label="Hành động" class="responsive-actions" style="text-align: right;">
                 <div style="display: flex; gap: 0.4rem; justify-content: flex-end;">
                   <!-- Pending approval actions -->
                   <template v-if="cat.status === 'PENDING'">
